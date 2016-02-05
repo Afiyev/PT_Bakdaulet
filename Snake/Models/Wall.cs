@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake
+namespace Snake.Models
 {
-    public class Food: Drawer
+    public class Wall : Drawer
     {
-        public Food()
+        public Wall()
         {
-             sign = '$';
-         }
+            sign = '#';
+        }
     }
 }
