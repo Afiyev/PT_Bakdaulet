@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Example3
+namespace Snake
 {
     class Program
     {
@@ -13,7 +13,8 @@ namespace Example3
         {
 
             Game.Init();
-            Game.LoadlLevel(1);
+            Game.LoadlLevel(Game.level);
+            
 
             while (Game.isActive)
             {

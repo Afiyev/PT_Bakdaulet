@@ -8,39 +8,53 @@ namespace Snake.Models
 {
     public class Snake : Drawer
     {
-        public int MyProperty { get; set; }
-
+        // snake belgisi
         public Snake()
         {
-            sign = 'o';
+            sign = '*';
         }
 
         public void Move(int dx, int dy)
         {
-
+          
+            // snake kozgaltu barisi
             for (int i = body.Count - 1; i > 0; --i)
             {
                 body[i].x = body[i - 1].x;
                 body[i].y = body[i - 1].y;
             }
+            
 
             body[0].x = body[0].x + dx;
             body[0].y = body[0].y + dy;
-
+            // foodti jegennen kein scorega 1 kosamiz.
             if (Game.snake.body[0].x == Game.food.body[0].x &&
                Game.snake.body[0].y == Game.food.body[0].y)
             {
+                Game.ss++;
+                if (Game.ss%4==0)
+                {
+                    Game.level++;
+                    Console.Clear();
+                    Console.SetCursorPosition(20, 10);
+                    Console.WriteLine("Next level!!!");
+                    Game.isActive = false;
+                    Game.Init();
+                    Game.LoadlLevel(Game.level);
+                    
+                }
+                // snake 1 nukte kosamiz
                 Game.snake.body.Add(new Point
                 {
                     x = Game.food.body[0].x,
                     y = Game.food.body[0].y
                 });
-
-                Game.food.body[0].x = new Random().Next(0, 47);
-                Game.food.body[0].y = new Random().Next(0, 47);
+                // random jerden food wigaramiz
+                Game.food.body[0].x = new Random().Next(1, 39);
+                Game.food.body[0].y = new Random().Next(1, 14);
 
             }
-
+            // wallga snake tiip ketken jagdaida oin toktatamiz
             for (int i = 0; i < Game.wall.body.Count; ++i)
             {
                 if (Game.snake.body[0].x == Game.wall.body[i].x &&

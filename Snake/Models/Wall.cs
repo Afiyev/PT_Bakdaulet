@@ -8,6 +8,7 @@ namespace Snake.Models
 {
     public class Wall : Drawer
     {
+        // wall belgisi
         public Wall()
         {
             sign = '#';

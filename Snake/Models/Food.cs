@@ -8,6 +8,7 @@ namespace Snake.Models
 {
     public class Food : Drawer
     {
+        // Tamakti belgisi
         public Food()
         {
             sign = '$';
