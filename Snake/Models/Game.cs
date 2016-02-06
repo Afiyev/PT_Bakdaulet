@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Snake.Models
 {
+    [Serializable]
     public class Game
     {
         public static int level = 1;
@@ -16,8 +17,6 @@ namespace Snake.Models
         public static Food food;
         public static Wall wall;
         
-        
-
         public static void Init()
         {
             isActive = true;
@@ -33,7 +32,7 @@ namespace Snake.Models
             wall.color = ConsoleColor.White;
             snake.color = ConsoleColor.Yellow;
 
-            Console.SetWindowSize(40, 15);
+            Console.SetWindowSize(90, 20);
             // oin otetin bolikterdi rewetkalarmen korwau
             for (int i = 0; i <= 40; i++)
             {
@@ -63,9 +62,7 @@ namespace Snake.Models
             // tiisti levelge bailanisti filedardi okimiz
             FileStream fs = new FileStream(string.Format(@"level{0}.txt", level), FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamReader sr = new StreamReader(fs);
-
-
-
+            
             string line;
             int row = -1;
             int col = -1;
@@ -85,8 +82,6 @@ namespace Snake.Models
                 }
             }
            
-
-
             sr.Close();
             fs.Close();
         }
@@ -111,6 +106,12 @@ namespace Snake.Models
             snake.Draw();
             food.Draw();
             wall.Draw();
+        }
+        public static bool FoodinWall()
+        {
+            for(int i=0; i<wall.body.Count; i++)
+            if(food.body[0].x == wall.body[i].x && food.body[0].y == wall.body[i].y )return true;
+            return false;
         }
     }
 }

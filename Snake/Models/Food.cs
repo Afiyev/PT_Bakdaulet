@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Snake.Models
 {
+    [Serializable]
     public class Food : Drawer
     {
         // Tamakti belgisi

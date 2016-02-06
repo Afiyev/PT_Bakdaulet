@@ -1,7 +1,10 @@
-﻿namespace Snake.Models
+﻿using System;
+
+namespace Snake.Models
 {
-    public class Point
-    {
+        [Serializable]
+        public class Point
+        {
         public int x;
         public int y;
         public Point()

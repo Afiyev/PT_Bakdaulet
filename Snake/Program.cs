@@ -11,15 +11,12 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-
             Game.Init();
             Game.LoadlLevel(Game.level);
             
-
             while (Game.isActive)
             {
                 Game.Draw();
-
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
                 switch (pressedKey.Key)
                 {

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Snake.Models
 {
+   [Serializable]
+
     public class Snake : Drawer
     {
         // snake belgisi
@@ -36,9 +38,9 @@ namespace Snake.Models
                 {
                     Game.level++;
                     Console.Clear();
+                    Game.isActive = false;
                     Console.SetCursorPosition(20, 10);
                     Console.WriteLine("Next level!!!");
-                    Game.isActive = false;
                     Game.Init();
                     Game.LoadlLevel(Game.level);
                     
@@ -50,9 +52,16 @@ namespace Snake.Models
                     y = Game.food.body[0].y
                 });
                 // random jerden food wigaramiz
-                Game.food.body[0].x = new Random().Next(1, 39);
-                Game.food.body[0].y = new Random().Next(1, 14);
-
+                if (Game.FoodinWall()!=true)
+                {
+                    Game.food.body[0].x = new Random().Next(1, 39);
+                    Game.food.body[0].y = new Random().Next(1, 14);
+                }
+                while (Game.FoodinWall() == true)
+                {
+                    Game.food.body[0].x = new Random().Next(1, 39);
+                    Game.food.body[0].y = new Random().Next(1, 14);
+                }
             }
             // wallga snake tiip ketken jagdaida oin toktatamiz
             for (int i = 0; i < Game.wall.body.Count; ++i)
